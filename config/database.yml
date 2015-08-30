@@ -8,7 +8,7 @@ development: &default
   database: logging_rocks
   pool: 5
   username: rundong
-  password: ^sCF.dFzA3`a!@r`
+  password: GG8WwRvNaF6hEMsA
   reconnect: true
 
 staging: 
