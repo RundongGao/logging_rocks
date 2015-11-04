@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830195319) do
+ActiveRecord::Schema.define(version: 20151104012537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "records", force: :cascade do |t|
-    t.integer  "record_id",  null: false
-    t.string   "type"
+  create_table "finishes", force: :cascade do |t|
+    t.integer  "training_id", null: false
+    t.string   "catagory"
     t.integer  "value"
     t.string   "difficulty"
     t.datetime "created_at"
   end
 
-  add_index "records", ["difficulty"], name: "index_records_on_difficulty", using: :btree
-  add_index "records", ["record_id"], name: "index_records_on_record_id", using: :btree
-  add_index "records", ["type"], name: "index_records_on_type", using: :btree
+  add_index "finishes", ["catagory"], name: "index_finishes_on_catagory", using: :btree
+  add_index "finishes", ["difficulty"], name: "index_finishes_on_difficulty", using: :btree
+  add_index "finishes", ["training_id"], name: "index_finishes_on_training_id", using: :btree
 
   create_table "trainings", force: :cascade do |t|
     t.date     "date",       null: false
@@ -36,5 +36,14 @@ ActiveRecord::Schema.define(version: 20150830195319) do
 
   add_index "trainings", ["date"], name: "index_trainings_on_date", using: :btree
   add_index "trainings", ["user_id"], name: "index_trainings_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.datetime "created_at"
+  end
+
+  add_index "users", ["first_name", "last_name"], name: "index_users_on_first_name_and_last_name", unique: true, using: :btree
 
 end
