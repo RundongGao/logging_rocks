@@ -1,0 +1,7 @@
+<tr>
+	<td> <%= training.user.first_name + ' ' + training.user.last_name %> </td>
+	<td> <%= training.date %> </td>
+	<td> <%= training.finishes.sum(:value) %> </td>
+	<td> <%= training.finishes.where(catagory: "bouldering").sum(:value) %> </td>
+	<td> <%= training.finishes.where(catagory: "top_rope").sum(:value) %> </td>
+</tr>
