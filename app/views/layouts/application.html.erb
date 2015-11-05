@@ -6,7 +6,16 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
+	 <nav class='head-bar'>
+      <a href="/" class='site-brand'>About Climblog.org</a>
+      <a href="/trainings" class="nav-option">My Climbing History</a>
+      <!--
+      <a href="/" class="nav-option unfinished">Add a New Training</a>
+      <a href="/" class="nav-option unfinished">Sign In/Out</a>
+    	-->
+  </nav>
 
 <%= yield %>
 
