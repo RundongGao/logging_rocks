@@ -28,6 +28,8 @@ gem 'pg'
 gem 'therubyracer'
 gem 'execjs'
 
+gem 'rails_param'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

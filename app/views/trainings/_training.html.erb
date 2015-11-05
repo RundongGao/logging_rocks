@@ -4,4 +4,6 @@
 	<td> <%= training.finishes.sum(:value) %> </td>
 	<td> <%= training.finishes.where(catagory: "bouldering").sum(:value) %> </td>
 	<td> <%= training.finishes.where(catagory: "top_rope").sum(:value) %> </td>
+	<td> <%= link_to "details", controller: :finishes, action: :index, 
+		training_id: training.id %> </td>
 </tr>
