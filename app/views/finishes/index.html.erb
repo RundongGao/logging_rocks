@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+    	<th>Type</th>
+      <th>Difficulty</th>
+      <th>Number of Finishes</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+	  <% @finishes.each do |finish| %>
+	  	<%= render partial: 'finish', locals: {finish: finish} %>
+	  <% end %>
+	</tbody>
+</table>
