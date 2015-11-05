@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :climbers
   resources :finishes, only: [:index, :show]
   resources :trainings, only: [:index]
   root 'main#index'
