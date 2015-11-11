@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :climbers
-  resources :finishes, only: [:index, :show]
-  resources :trainings, only: [:index]
+  resources :finishes, only: [:index, :new]
+  resources :trainings, only: [:index, :new]
   root 'main#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
