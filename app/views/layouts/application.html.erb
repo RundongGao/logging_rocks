@@ -18,9 +18,9 @@
         <%= link_to "Login", new_climber_session_path %>
         <%= link_to "Sign up", new_climber_registration_path %>
       <% end %>
-      <%= link_to "Rundong's Climbing History", controller: :trainings, action: :index, climber_id: 4 %>
+      <%= link_to "Rundong's Climbing History", trainings_path(climber_id: 4) %>
 
-      <%= link_to "Add a New Training", controller: :trainings, action: :new%>
+      <%= link_to "Add a New Training", new_training_path %>
   
       <%= link_to "About Climblog.org", root_path %>
 
