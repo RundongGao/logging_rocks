@@ -5,26 +5,25 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  
 </head>
 
 <body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 	 <nav class='head-bar'>
-      <a href="/" class='site-brand'>About Climblog.org</a>
-      <a href="/trainings" class="nav-option">My Climbing History</a>
-        <!--
       <% if climber_signed_in? %>
-      <%= link_to "Logout", destroy_climber_session_path, method: :delete %>
-        <p> Logged in as <%= current_climber.email %> </p> 
+        <%= link_to "Logout", destroy_climber_session_path, method: :delete %>
       <% else %>
         <%= link_to "Login", new_climber_session_path %>
         <%= link_to "Sign up", new_climber_registration_path %>
       <% end %>
-    
-      <a href="/" class="nav-option unfinished">Add a New Training</a>
-      <a href="/" class="nav-option unfinished">Sign In/Out</a>
-    	-->
+      <%= link_to "Rundong's Climbing History", trainings_path(climber_id: 4) %>
+
+      <%= link_to "Add a New Training", new_training_path %>
+  
+      <%= link_to "About Climblog.org", root_path %>
+
   </nav>
 
 <%= yield %>

@@ -17,3 +17,6 @@
   text-align: center;
   font-style:italic;
 }
+ .crossed{
+  text-decoration: line-through;
+}
