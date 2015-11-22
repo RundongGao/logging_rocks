@@ -10,8 +10,11 @@ class TrainingsController < ApplicationController
 
   def index
   	param! :climber_id,           Integer, required: true
-  	
-  	@trainings = Training.all.order(date: :desc)
+
+    authenticate_climber! unless climber_public? params[:climber_id]
+
+    climber = Climber.find(params[:climber_id])
+  	@trainings = climber.trainings.order(date: :desc)
     respond_to do |format|
       format.html
     end
@@ -38,6 +41,11 @@ class TrainingsController < ApplicationController
   end
 
   private 
+
+  def sanitize_page_params
+    params[:climber_id] = params[:climber_id].to_i
+  end
+
   def training_params
     params.require(:training).permit(:date)
   end

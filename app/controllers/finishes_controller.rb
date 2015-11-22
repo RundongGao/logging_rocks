@@ -5,6 +5,8 @@ class FinishesController < ApplicationController
   def index
   	param! :training_id,           Integer, required: true
 
+    authenticate_climber! unless climber_public? Training.find(params[:training_id]).climber_id
+
   	@finishes = Finish.where(training_id: params["training_id"])
     respond_to do |format|
       format.html
