@@ -1,0 +1,7 @@
+<tr>
+	<td> <%= link_to climber.first_name + climber.last_name,
+	  trainings_path(climber_id: climber.id) %> </td>
+	<td> <%= climber.trainings.count %> </td>
+	<td> <%= climber.trainings.order(:date).first.date %> </td>
+	<td> <%= climber.trainings.order(:date).last.date %> </td>
+</tr>

@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+    	<th>Name</th>
+      <th>Total Trainings</th>
+      <th>Since</th>
+      <th>Last Climb at</th>
+    </tr>
+  </thead>
+  <tbody>
+	  <% @public_climbers.each do |climber| %>
+	  	<%= render partial: 'climber', locals: {climber: climber} %>
+	  <% end %>
+	</tbody>
+</table>

@@ -12,18 +12,19 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 	 <nav class='head-bar'>
-      <% if climber_signed_in? %>
-        <%= link_to "Logout", destroy_climber_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Login", new_climber_session_path %>
-        <%= link_to "Sign up", new_climber_registration_path %>
-      <% end %>
-      <%= link_to "Rundong's Climbing History", trainings_path(climber_id: 4) %>
+    <%= link_to 'About Climblog.org', root_path %>
 
-      <%= link_to "Add a New Training", new_training_path %>
-  
-      <%= link_to "About Climblog.org", root_path %>
+    <%= link_to 'View Public Climbing Records', public_climbers_path %>
 
+    <%= link_to 'Track of My Climbing', new_training_path %>
+
+    <% if climber_signed_in? %>
+      <%= link_to 'View My Climbing History', trainings_path(climber_id: current_climber.id) %>
+      <%= link_to "Logout", destroy_climber_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Login", new_climber_session_path %>
+      <%= link_to "Sign up", new_climber_registration_path %>
+    <% end %>
   </nav>
 
 <%= yield %>

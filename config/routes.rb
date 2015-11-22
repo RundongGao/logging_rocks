@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :climbers
-  resources :finishes, only: [:index, :new, :create]
+  devise_for :climbers, controllers: { registrations: "climbers/registrations" }
+
+  devise_scope :climber do
+    get 'public_climbers' => 'climbers/registrations#public_climbers'
+  end
+
   resources :trainings, only: [:index, :new, :create]
+  resources :finishes, only: [:index, :new, :create]
+
   root 'main#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
