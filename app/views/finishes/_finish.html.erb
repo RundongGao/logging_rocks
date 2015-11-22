@@ -3,4 +3,6 @@
 	<td> <%= finish.difficulty %> </td>
 	<td> <%= finish.value %> </td>
 	<td> <%= finish.training.date %> </td>
+	<td> <%= link_to "edit", edit_finish_path(finish) if @is_owner %> </td>
+	<td> <%= link_to "delete", finish, method: :delete, data: { confirm: "You sure?"} if @is_owner %> </td>
 </tr>

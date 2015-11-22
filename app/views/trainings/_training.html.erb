@@ -6,4 +6,6 @@
 	<td> <%= training.finishes.where(catagory: "bouldering").sum(:value) %> </td>
 	<td> <%= link_to "details", controller: :finishes, action: :index, 
 		training_id: training.id %> </td>
+	<td> <%= link_to "edit", edit_training_path(training) if @is_owner %> </td>
+	<td> <%= link_to "delete", training, method: :delete, data: { confirm: "You sure?"} if @is_owner%> </td>
 </tr>

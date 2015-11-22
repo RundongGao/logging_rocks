@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     Climber.find(climber_id).public if Climber.find(climber_id)
   end
 
+  def belong_to_current_user? climber_id
+    climber_id == current_climber.id if climber_signed_in?
+  end
+
   protected
 
   def configure_permitted_parameters
