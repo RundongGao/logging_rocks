@@ -1,0 +1,34 @@
+<%= form_for(@finish) do |f| %>
+
+  <% if @finish.errors.any? %>
+    <div>
+      <h2><%= pluralize(@finish.errors.count, "error") %> prohibited this finish from being saved:</h2>
+      <ul>
+      <% @finish.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'type' %><br>
+    <%= f.text_field :catagory %>
+  </div>
+
+  <div class="field">
+    <%= f.label :difficulty %><br>
+    <%= f.text_field :difficulty %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'number of finishes' %><br>
+    <%= f.number_field :value %>
+  </div>
+
+  <%= f.hidden_field :training_id, value: params[:training_id] %>
+
+  <div class="actions">
+    <%= f.submit "log this record" %>
+  </div>
+<% end %>
