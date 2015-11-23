@@ -6,10 +6,11 @@ Rails.application.routes.draw do
     get 'public_climbers' => 'climbers/registrations#public_climbers'
   end
 
-  resources :trainings, only: [:index, :new, :create]
-  resources :finishes, only: [:index, :new, :create]
+  resources :trainings, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :finishes, only: [:index, :new, :create, :edit, :update, :destroy]
 
   root 'main#index'
+  get 'development' => 'main#development'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

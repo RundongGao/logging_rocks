@@ -1,4 +1,4 @@
 class Training < ActiveRecord::Base
   belongs_to :climber
-  has_many :finishes
+  has_many :finishes, dependent: :destroy
 end

@@ -6,6 +6,7 @@ class FinishesController < ApplicationController
   	param! :training_id,           Integer, required: true
 
     authenticate_climber! unless climber_public? Training.find(params[:training_id]).climber_id
+    @is_owner = belong_to_current_user? Training.find(params[:training_id]).climber_id
 
   	@finishes = Finish.where(training_id: params["training_id"])
     respond_to do |format|
@@ -34,6 +35,31 @@ class FinishesController < ApplicationController
 
   def new
   	@finish = Finish.new
+  end
+
+  def edit
+    @finish = Finish.find(params[:id])
+    params[:training_id] = @finish.training.id
+  end
+
+  def update
+    @finish = Finish.find(params[:id])
+    respond_to do |format|
+      if @finish.update_attributes(finish_params)
+        format.html { redirect_to finishes_path(training_id: @finish.training.id), notice: 'update success' }
+      else
+        format.html { redirect_to edit_finish_path(@finish), notice: 'update failed, please try again.' }
+      end
+    end
+  end
+
+  def destroy
+    binding.pry
+    training_id = Finish.find(params[:id]).training.id
+    Finish.find(params[:id]).destroy
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'delete success' }
+    end
   end
 
   private 
