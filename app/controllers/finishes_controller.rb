@@ -5,10 +5,12 @@ class FinishesController < ApplicationController
   def index
   	param! :training_id,           Integer, required: true
 
-    authenticate_climber! unless climber_public? Training.find(params[:training_id]).climber_id
-    @is_owner = belong_to_current_user? Training.find(params[:training_id]).climber_id
+    authenticate_climber! unless climber_public? Training.climber_id(params[:training_id])
 
-  	@finishes = Finish.where(training_id: params["training_id"])
+    @is_owner = belong_to_current_user? Training.climber_id(params[:training_id])
+    @training = Training.find(params["training_id"])
+  	@finishes = @training.finishes.decorate
+
     respond_to do |format|
       format.html
     end
@@ -22,7 +24,7 @@ class FinishesController < ApplicationController
       t.param! :training_id, Integer, required: true
     end
 
-    @finish = Finish.new(finish_params)
+    @finish = Finish.new(create_finish_params)
 
     respond_to do |format|
       if @finish.save
@@ -39,23 +41,21 @@ class FinishesController < ApplicationController
 
   def edit
     @finish = Finish.find(params[:id])
-    params[:training_id] = @finish.training.id
   end
 
   def update
     @finish = Finish.find(params[:id])
     respond_to do |format|
-      if @finish.update_attributes(finish_params)
-        format.html { redirect_to finishes_path(training_id: @finish.training.id), notice: 'update success' }
+      if @finish.update_attributes(update_finish_params)
+        format.html { redirect_to finishes_path(training_id: @finish.training_id), notice: 'update success' }
       else
-        format.html { redirect_to edit_finish_path(@finish), notice: 'update failed, please try again.' }
+        format.html { redirect_to :back, notice: 'update failed, please try again.' }
       end
     end
   end
 
   def destroy
-    binding.pry
-    training_id = Finish.find(params[:id]).training.id
+    training_id = Finish.find(params[:id]).training_id
     Finish.find(params[:id]).destroy
     respond_to do |format|
       format.html { redirect_to :back, notice: 'delete success' }
@@ -64,7 +64,11 @@ class FinishesController < ApplicationController
 
   private 
 
-  def finish_params
+  def update_finish_params
+    params.require(:finish).permit(:catagory, :difficulty, :value)
+  end
+
+  def create_finish_params
     params.require(:finish).permit(:catagory, :difficulty, :value,:training_id)
   end
 

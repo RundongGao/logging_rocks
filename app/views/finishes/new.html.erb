@@ -1,4 +1,5 @@
 <h1>New Finish</h1>
 <%= render 'form' %>
-<%= link_to "view this training", 
+<%= link_to 'view this climbing', 
 	finishes_path(training_id: params[:training_id]) %>
+<%= link_to 'add another climbing', new_training_path %>
