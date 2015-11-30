@@ -43,6 +43,12 @@ gem 'draper', '~> 1.3'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+
+	gem 'faker'
+  gem 'factory_girl_rails', '~> 4.5.0'
+
+  gem 'rspec-rails', '~> 3.0'
+
   gem 'pry'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

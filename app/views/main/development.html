@@ -1,6 +1,29 @@
 <h1 class='header-text'>  Climblog.org development log </h1>
 
 <div class='description'>
+	<p> Nov.29 2015 </p>
+	<p> 
+		Today I did some refactorization and add some unit tests.
+		I integrated draper with climblog.org so views is no longer make database call any more. I also abstracted some method into model so code in controllers and views are looking cleaner now :D. Some basic links of navigation between pages are added along with my refactorization. I won't worry about that too much, since I will need to redo all of those all over again once I start to working on front-end desgin.
+	</p>
+	<p> 
+		There were some good progress on unit testing. Rspec, FactoryGirl and Devise gems
+		are working together now. Now I have two unit test cases. It's a good start 
+		and since I have those tools for unit testing figured out, the rest should be 
+		easier.
+	</p>  
+	<p>
+		I am pretty close to decide to use Bootstrap for frontend, considering it's astonishing amount 
+		of online resources. I picked a video tutorial on Bootstrap and I will see how it goes.
+	</p>
+	<p>
+		Another thing I need to keep in mind is picking a javascript graphic libaray for 
+		this site,  since the long run goal is to plot fancy graph for climbers to visualize their progress. I imagine the tricky part in futrue will be banlancing responsiveness and fancy plots. But not much I can do about that at this moment. 
+	</p>
+</div>
+
+
+<div class='description'>
 	<p> Nov.22 2015 </p>
 	<p> Today has been very productive!
 	I added the public climber page; figured out a way to differentiate records belong to public climber or private climber and added delelet and edit features for records. The tricky part was to make everyone can view public records but only the owner can edit and delete them. </p>
@@ -13,4 +36,5 @@
 		</ul>
 	</p>
 	<p> Those probably will takes my two weekends to do. So no new features in weeks. And after that I need to pick a front end framework to make the site looks better </p>
+</div>
 
