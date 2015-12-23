@@ -5,13 +5,17 @@ class TrainingsController < ApplicationController
   def index
   	param! :climber_id,           Integer, required: true
 
-    authenticate_climber! unless climber_public? params[:climber_id]
+    is_public = climber_public? params[:climber_id]
+    authenticate_climber! unless is_public
     @is_owner = belong_to_current_user? params[:climber_id]
 
-    climber = Climber.find(params[:climber_id])
-  	@trainings = climber.trainings.order(date: :desc).decorate
+    if @is_owner || is_public
+      climber = Climber.find(params[:climber_id])
+    	@trainings = climber.trainings.order(date: :desc).decorate
+    end
 
     respond_to do |format|
+      format.html { redirect_to :root, notice: 'not authoriz to view the request records.' } unless (@is_owner || is_public)
       format.html
     end
   end
