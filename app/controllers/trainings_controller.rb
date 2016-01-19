@@ -29,6 +29,7 @@ class TrainingsController < ApplicationController
   end
 
   def create
+
     param! :training, Hash do |t|
       t.param! :date, Date, required: true
     end
@@ -45,20 +46,32 @@ class TrainingsController < ApplicationController
   end
 
   def update
+    @is_owner = Training.find(params['id'].to_i).climber_id == current_climber.id
+
     @training = Training.find(params[:id])
     respond_to do |format|
-      if @training.update_attributes(training_params)
-        format.html { redirect_to finishes_path(training_id: @training.id), notice: 'climbing record update success' }
+
+      if !@is_owner
+        format.html { redirect_to :root, notice: 'not authoriz to update the request record.' }
+      elsif @training.update_attributes(training_params)
+        format.html { redirect_to finishes_path(training_id: @training.id), notice: 'training record update success' }
       else
-        format.html { redirect_to :back, notice: 'limbing record update failed, please try again.' }
+        format.html { redirect_to :back, notice: 'training record update failed, please try again.' }
       end
+
     end
   end
 
   def destroy
-    Training.find(params[:id]).destroy
+    @is_owner = Training.find(params['id'].to_i).climber_id == current_climber.id
+
+    Training.find(params[:id]).destroy if @is_owner
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'limbing record delete success' }
+      if @is_owner
+        format.html { redirect_to :back, notice: 'training record delete success' }
+      else
+        format.html { redirect_to :root, notice: 'not authoriz to delete the request record.' }
+      end
     end
   end
 

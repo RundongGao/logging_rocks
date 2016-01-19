@@ -1,3 +1,4 @@
+require 'date'
 
 FactoryGirl.define do
   factory :climber do
@@ -13,6 +14,11 @@ FactoryGirl.define do
 
   trait :private do
     public false
+  end
+
+  factory :training do
+    date Date.today.to_s
+    climber_id 1
   end
 end
 
