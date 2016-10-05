@@ -29,7 +29,7 @@ gem 'execjs'
 
 gem 'rails_param'
 
-gem 'devise'
+gem 'devise', '~> 3.0'
 
 gem 'draper', '~> 1.3'
 # Use ActiveModel has_secure_password
