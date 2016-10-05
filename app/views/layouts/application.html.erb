@@ -5,29 +5,40 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  
+
+
+<!-- Optional theme -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" integrity="sha384-1L94saFXWAvEw88RkpRz8r28eQMvt7kG9ux3DdCqya/P3CfLNtgqzMnyaUa49Pl2" crossorigin="anonymous">
+
+
 </head>
+
+
 
 <body>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-	 <nav class='head-bar'>
-    <%= link_to 'About Climblog.org', root_path %>
+	 <nav class='head-bar navbar navbar-default navbar-fixed-top'>
+    <div class="container">
+      <ul class='nav navbar-nav'>
+        <li> <%= link_to 'About Climblog.org', root_path %> </li>
 
-    <%= link_to 'View Public Climbing Records', public_climbers_path %>
+        <li> <%= link_to 'View Public Climbing Records', public_climbers_path %> </li>
 
-    <%= link_to 'Track of My Climbing', new_training_path %>
+        <li> <%= link_to 'Track of My Climbing', new_training_path %> </li>
 
-    <% if climber_signed_in? %>
-      <%= link_to 'View My Climbing History', trainings_path(climber_id: current_climber.id) %>
-      <%= link_to "Logout", destroy_climber_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Login", new_climber_session_path %>
-      <%= link_to "Sign up", new_climber_registration_path %>
-    <% end %>
+        <% if climber_signed_in? %>
+          <li>  <%= link_to 'View My Climbing History', trainings_path(climber_id: current_climber.id) %> </li>
+          <li> <%= link_to "Logout", destroy_climber_session_path, method: :delete %> </li>
+        <% else %>
+          <li> <%= link_to "Login", new_climber_session_path %> </li>
+          <li> <%= link_to "Sign up", new_climber_registration_path %> </li>
+        <% end %>
+      </ul>
+    </div>
   </nav>
-
+<div class="container">
 <%= yield %>
-
+</div>
 </body>
 </html>
